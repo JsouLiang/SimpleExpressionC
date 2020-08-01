@@ -6,7 +6,14 @@
 //  Copyright © 2020 Liang. All rights reserved.
 //
 
-#include "SimpleExpressionC.h"
+/**
+ 简单加减法
+ expr = expr + num | expr - num | null
+  转成右递归：
+     expr = num expr1
+     expr1 = [+,-] num expr | null
+ */
+#include "AS.h"
 
 int expr1(int lvalue, const char *expStr);
 
@@ -31,6 +38,7 @@ int expr1(int lvalue, const char *expStr) {
     if (*expStr == '+') {
         // eat character +
         expStr++;
+        // + num expr1
         int num = number(expStr++);
         return expr1(lvalue + num, expStr);
     } else if (*expStr == '-') {

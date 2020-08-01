@@ -7,9 +7,22 @@
 //
 
 #include <stdio.h>
+#include "ASMD.h"
+
+void test(const char *expStr) {
+    printf("%s=%d\n", expStr, eval(expStr));
+}
 
 int main(int argc, const char * argv[]) {
-    printf("1+2=%d\n", slm_eval("1+2"));
-    printf("1-2+3=%d\n", slm_eval("1-2+3"));
+    test("1+2");
+    test("3-2+1");
+    test("2*3");
+    test("4/2");
+    test("3+4/2-1");
+//    test("1*2+3%2");
+    test("2*2*2-3");
+//    test("(2+4)/3");
+//    test("(1+2)*(2+2)");
+//    test("(1+3*2)%3");
     return 0;
 }
