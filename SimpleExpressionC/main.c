@@ -9,7 +9,7 @@
 #include <stdio.h>
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    printf("Hello, World!\n");
+    printf("1+2=%d\n", slm_eval("1+2"));
+    printf("1-2+3=%d\n", slm_eval("1-2+3"));
     return 0;
 }
