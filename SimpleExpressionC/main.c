@@ -7,10 +7,11 @@
 //
 
 #include <stdio.h>
-#include "ASMD.h"
+#include "SimpleExpressionC.h"
 
 void test(const char *expStr, int except) {
-    printf("%s=%d excapt=%d\n", expStr, eval(expStr), except);
+    int errorType;
+    printf("%s=%d excapt=%d\n", expStr, slm_evalC(expStr, &errorType), except);
 }
 
 int main(int argc, const char * argv[]) {
@@ -25,5 +26,9 @@ int main(int argc, const char * argv[]) {
     test("(2+4)/3", (2+4)/3);
     test("(1+2)*(2+2)", (1+2)*(2+2));
     test("(1+3*2)%3", (1+3*2)%3);
+    test("3*-1", 3*-1);
+    test("3+-1", 3+-1);
+    test("-1+-1+1", -1+-1+1);
+    test("12+1", 12+1);
     return 0;
 }

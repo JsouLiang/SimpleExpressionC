@@ -15,10 +15,10 @@
  */
 #include "AS.h"
 
-int expr1(int lvalue, const char *expStr);
+static int expr1(int lvalue, const char *expStr);
 
 /// num: '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
-int number(const char *expStr) {
+static int number(const char *expStr) {
     return *expStr - '0';
 }
 
@@ -26,7 +26,7 @@ int number(const char *expStr) {
 /// 转成右递归：
 ///     expr = num expr1
 ///     expr1 = [+,-] num expr | null
-int expr(const char *expStr) {
+static int expr(const char *expStr) {
     int res = number(expStr++);
     return expr1(res, expStr);
 }
@@ -34,7 +34,7 @@ int expr(const char *expStr) {
 /// expr1 = + num expr1
 ///       | - num expr1
 ///       | null
-int expr1(int lvalue, const char *expStr) {
+static int expr1(int lvalue, const char *expStr) {
     if (*expStr == '+') {
         // eat character +
         expStr++;
